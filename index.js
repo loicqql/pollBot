@@ -34,6 +34,12 @@ client.on('message', message => {
       .addField('or', '👉 **'+PREFIX+' "question" "answer1" "answer2"**')
       .setFooter('Loïc - 2020');
 
+      //PollBot only
+      if(process.env.NAME === "PollBot") {
+        embed.addField('\u200B', "Visit ["+process.env.WEBSITE+"]("+process.env.WEBSITE+")")
+        embed.addField('\u200B', "Add PollBot to your server ! [Click here]("+process.env.LIEN+")")
+      }
+
       message.channel.send(embed);
 
     }else {
@@ -73,6 +79,12 @@ function help(channel) {
   .addField('\u200B', "👉 **"+PREFIX+" question**")
   .addField('or', '👉 **'+PREFIX+' "question" "answer1" "answer2"**')
   .setFooter('Loïc - 2020');
+
+  //PollBot only
+  if(process.env.NAME === "PollBot") {
+    embed.addField('\u200B', "Visit ["+process.env.WEBSITE+"]("+process.env.WEBSITE+")")
+    embed.addField('\u200B', "Add PollBot to your server ! [Click here]("+process.env.LIEN+")")
+  }
 
   channel.send(embed);
 }
