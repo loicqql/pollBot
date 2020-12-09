@@ -49,7 +49,11 @@ client.on('message', message => {
         if(message.content == PREFIX+" servers") {
           servers(message.channel);
         }else {
-          poll(message.content, message.channel, db);
+          if(message.content == PREFIX+" rick") {
+            message.channel.send('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+          }else {
+            poll(message.content, message.channel, db);
+          }
         }
       }
     }
