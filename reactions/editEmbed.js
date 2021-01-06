@@ -9,7 +9,7 @@ function editEmbed(message, dbMessage) {
     .setTitle(message.embeds[0].title)
     .setAuthor(process.env.NAME, IMAGE)
     .setTimestamp()
-    .setFooter('Loïc - 2020');
+    .setFooter('Loïc - 2021');
     
     dbMessage.get().then((doc) => {
       if(doc.exists) {
