@@ -8,7 +8,7 @@ function sendPoll(question, reponses, channel, db) {
       .setTitle(question)
       .setAuthor(process.env.NAME, IMAGE)
     .setTimestamp()
-    .setFooter('Loïc - 2020');
+    .setFooter('Loïc - 2021');
   
     for (let index = 0; index < reponses.length; index++) {
       embed.addField(NUMBER[index]+' '+reponses[index],'\u200B');

@@ -32,7 +32,7 @@ client.on('message', message => {
       .setTimestamp()
       .addField('\u200B', "👉 **"+PREFIX+" question**")
       .addField('or', '👉 **'+PREFIX+' "question" "answer1" "answer2"**')
-      .setFooter('Loïc - 2020');
+      .setFooter('Loïc - 2021');
 
       //PollBot only
       if(process.env.NAME === "PollBot") {
@@ -82,7 +82,7 @@ function help(channel) {
   .setTimestamp()
   .addField('\u200B', "👉 **"+PREFIX+" question**")
   .addField('or', '👉 **'+PREFIX+' "question" "answer1" "answer2"**')
-  .setFooter('Loïc - 2020');
+  .setFooter('Loïc - 2021');
 
   //PollBot only
   if(process.env.NAME === "PollBot") {
