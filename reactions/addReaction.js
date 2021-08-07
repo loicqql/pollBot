@@ -34,18 +34,31 @@ async function addReaction(reaction, user, IDBOT, db) {
       if (!reactionInvalid) {
         let patch = {};
 
-        for (let index = 0; index < message.embeds[0].fields.length; index++) {
-          patch[NUMBER[index]] = {
-            [user.id]: reaction.emoji.name === NUMBER[index] ? firebase.firestore.Timestamp.fromDate(new Date()) : false
-          }
-        }
-
         var dbMessage = db.collection('messages').doc(message.id);
 
-        dbMessage.set(patch, { merge: true })
-          .then(() => {
-            editEmbed(message, db.collection('messages').doc(message.id));
-          });
+        dbMessage.get().then(doc => {
+          if (doc.exists) {
+            var rows = doc.data();
+            if(!rows[reaction.emoji.name][user.id]) {
+              for (let index = 0; index < message.embeds[0].fields.length; index++) {
+                patch[NUMBER[index]] = {
+                  [user.id]: reaction.emoji.name === NUMBER[index] ? firebase.firestore.Timestamp.fromDate(new Date()) : false
+                }
+              }
+            }else {
+              for (let index = 0; index < message.embeds[0].fields.length; index++) {
+                patch[NUMBER[index]] = {
+                  [user.id]: false
+                }
+              }
+            }
+            dbMessage.set(patch, { merge: true })
+                .then(() => {
+                  editEmbed(message, db.collection('messages').doc(message.id));
+                });
+          }
+        })
+
       }
 
       reaction.users.remove(user.id);

@@ -33,7 +33,7 @@ function sendPoll(question, reponses, channel, db, idMessage, isUpdatedMessage) 
                     //Supprime data des autres fields  
                     let patch = {};
                     for (let index = message.embeds[0].fields.length; index < NUMBER.length; index++) {
-                      patch[NUMBER[index]] = null
+                      patch[NUMBER[index]] = false
                     }
                     var dbMessage = db.collection('messages').doc(sentMessage.id);
                     dbMessage.set(patch, { merge: true });
