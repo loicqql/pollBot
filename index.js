@@ -66,17 +66,20 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
       console.error('Something went wrong when fetching the message: ', error);
     }
   }
-  if (newMessage.author) {
-    if (!newMessage.author.bot) {
-      db.collection('messages').where('idMessage', '==', newMessage.id).get().then((snapshot) => {
-        if (!snapshot.empty) {
-          if (snapshot.size === 1) {
-            poll(newMessage.content, newMessage.channel, db, newMessage.id, true);
+  if(newMessage.content.startsWith(PREFIX)) {
+    if (newMessage.author) {
+      if (!newMessage.author.bot) {
+        db.collection('messages').where('idMessage', '==', newMessage.id).get().then((snapshot) => {
+          if (!snapshot.empty) {
+            if (snapshot.size === 1) {
+              poll(newMessage.content, newMessage.channel, db, newMessage.id, true);
+            }
           }
-        }
-      })
+        })
+      }
     }
   }
+  
 });
 
 function servers(channel) {
